@@ -8,23 +8,23 @@ import { router } from 'expo-router'
 const SplashScreenItem = ({ item }: { item: any }) => {
 
     const skipSplashScreen = () => {
-        router.replace('/rootLogin')
+        router.replace('/RootLogin')
     }
 
     return (
-        <StyleView className='w-screen items-center overflow-hidden'>
+        <StyleView className='w-screen h-full items-center overflow-hidden px-4'>
 
-            <StyleView className='w-[200vw] h-[600px]  bg-gray-100 rounded-b-full items-center justify-around'>
+            <StyleView className='w-[200vw] h-3/4 bg-gray-100 rounded-b-full items-center justify-around'>
 
                 <StyleTouchableOpacity onPress={skipSplashScreen} className='w-screen'>
                     <StyleText className='text-primary m-5 text-right font-semibold'>Skip</StyleText>
                 </StyleTouchableOpacity>
 
-                <StyleImage source={item.image} resizeMode='contain' className='w-[280px] h-[355px]' />
+                <StyleImage source={item.image} resizeMode='contain' className='w-[280px] h-[355px] object-contain' />
             </StyleView>
 
-            <StyleView className='mt-16 justify-around items-center space-y-4'>
-                <StyleText className='font-semibold text-2xl'>{item.title}</StyleText>
+            <StyleView className='h-1/4 gap-y-2 justify-center items-center'>
+                <StyleText className='font-semibold text-xl'>{item.title}</StyleText>
                 <StyleText className='font-base text-sm text-black-100'>{item.description}</StyleText>
             </StyleView>
 
@@ -58,7 +58,7 @@ const SplashScreen = () => {
     ]
 
     const skipSplashScreen = () => {
-        router.replace('/rootLogin')
+        router.replace('/auth')
     }
 
     const onViewableItemsChanged = ({ viewableItems }: { viewableItems: any }) => {
@@ -69,14 +69,15 @@ const SplashScreen = () => {
 
     return (
         <StyleSafeAreaView className=''>
-            <StyleView className='space-y-10 justify-center items-center'>
+            <StyleView className='space-y-10 justify-center items-center h-full w-full py-2 '>
                 <StyleFlatList
                     data={slides}
                     keyExtractor={(item: any) => item.id}
                     renderItem={({ item }) => <SplashScreenItem item={item} />}
                     horizontal
                     pagingEnabled
-                    onViewableItemsChanged={onViewableItemsChanged}
+                    onViewableItemsChanged={onViewableItemsChanged} 
+                    className='h-3/4'
                 />
                 <StyleView className='flex-row space-x-5 mx-auto'>
                     {
@@ -85,8 +86,8 @@ const SplashScreen = () => {
                 </StyleView>
 
 
-                <StyleTouchableOpacity onPress={skipSplashScreen} className='border border-red-400  rounded-full w-12 h-12 justify-center items-center'>
-                    <StyleImage source={icons.button} className="w-full h-full rounded-full bg-black-100 "
+                <StyleTouchableOpacity onPress={skipSplashScreen} className='border-none w-40 h-24 justify-center items-center'>
+                    <StyleImage source={icons.button} className="w-full h-full border-none object-cover bg-transparent"
                         resizeMode="cover" />
                 </StyleTouchableOpacity>
 
